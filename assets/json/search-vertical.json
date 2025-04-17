@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "name": "RaCas",
+      "icon": "ti-smart-home",
+      "url": "index.html"
+    }
+  ],
+  "files": [
+    {
+      "name": "Login Script",
+      "subtitle": "By Tommy Shelby",
+      "src": "img/icons/misc/search-xls.png",
+      "meta": "17kb",
+      "url": "app-file-manager.html"
+    }
+  ]
+}

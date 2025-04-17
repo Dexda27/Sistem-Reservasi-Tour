@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    user: www-data
+    ports:
+      - 80:80
+    volumes:
+      - ./application:/var/www/html/application:rw
+      - ./system:/var/www/html/system:ro
+      - ./assets:/var/www/html/assets:ro
+      - ./index.php:/var/www/html/index.php:ro
+      - ./.htaccess:/var/www/html/.htaccess:ro
+    networks:
+      - local
+    environment:
+      - DEV=1
+  db:
+    build: ./application/databases
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./application/databases/:/docker-entrypoint-initdb.d/
+    networks:
+      - local
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    networks:
+      - local
+
+networks:
+  local:
